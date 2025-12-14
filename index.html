@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora de Frete Inteligente</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .content {
+      flex: 1 0 auto;
+      /* permite o conteúdo crescer normalmente */
+      padding: 20px;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      padding: 15px 10px;
+      background: #f0f2f5;
+      flex-shrink: 0;
+      /* não deixa encolher */
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="content">
+    <div class="container">
+      <h1>Calculadora de Frete Inteligente ⚡</h1>
+
+      <div class="form-group">
+        <label for="saida">Saída:</label>
+        <input type="text" id="saida" placeholder="Clique aqui antes de clicar no mapa" readonly>
+        <button class="clear-btn" id="clearSaida">×</button>
+      </div>
+
+      <div class="form-group">
+        <label for="chegada">Chegada:</label>
+        <input type="text" id="chegada" placeholder="Clique aqui antes de clicar no mapa" readonly>
+        <button class="clear-btn" id="clearChegada">×</button>
+      </div>
+
+      <div id="map" style="height: 300px; margin-bottom: 15px;"></div>
+
+      <div class="form-group">
+        <label for="precoKm">Preço por KM (R$):</label>
+        <input type="number" id="precoKm" placeholder="Ex: 3,00" step="0.01">
+      </div>
+
+      <div class="form-group custos-dinamicos">
+        <label>Custos extras:</label>
+        <div id="custosContainer"></div>
+        <button type="button" id="addCusto">+ Adicionar custo</button>
+      </div>
+
+      <div class="form-group">
+        <label for="arredondamento">Arredondamento:</label>
+        <select id="arredondamento">
+          <option value="none">Nenhum</option>
+          <option value="up">Para cima</option>
+          <option value="down">Para baixo</option>
+        </select>
+      </div>
+
+      <button id="calcular" disabled>Calcular Frete</button>
+
+      <div id="resultado"></div>
+    </div>
+  </div>
+
+  <!-- Loading overlay -->
+  <div id="loadingOverlay">
+    <div id="loadingText">Calculando frete...</div>
+  </div>
+
+  <!-- Rodapé -->
+  <footer>
+    Criado pela <strong>Viana Tecnologia</strong> — Suporte via WhatsApp: <strong>(63) 9 8124-5663</strong><br>
+    Envie apenas mensagens.
+  </footer>
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
